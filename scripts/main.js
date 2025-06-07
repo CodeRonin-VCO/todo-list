@@ -52,7 +52,7 @@ function getUserData() {
         endDate: endDate,
         description: description,
         priority: priority
-    };
+    }
 }
 function stockUserData() {
     arrayTasks.push(getUserData());
