@@ -40,7 +40,7 @@ function getUserData() {
     const radio       = document.querySelector(`[name="priority"]:checked`);
     
     // Obtenir la valeur des champs
-    const name        = inputTaskName.value;
+    const name        = inputTaskName.value ? inputTaskName.value : alert(`Veuillez donner un nom de tâche`);
     const startDate   = inputStartDate.value;
     const endDate     = inputEndDate.value;
     const description = inputDescription.value;
@@ -61,17 +61,17 @@ function displayUserData() {
     displayTask.innerHTML = "";
 
     arrayTasks.forEach(task => {
-        const card              = createElement("details", "card", null);
+        const card              = createElement("details", "card", "");
         const card_name         = createElement("summary", "card_name", `${task.name}`);
-        const card_start        = createElement("div", "card_start", `Start: ${task.startDate}`);
-        const card_end          = createElement("div", "card_end", `End: ${task.endDate}`);
-        const card_description  = createElement("div", "card_description", `${task.description}`);
-        const card_priority     = createElement("div", "card_priority", `Priority :${task.priority}`);
-        const btnDelete         = createElement("div", "delete-btn", `Supprimer ✖️`)
+        const card_start        = createElement("div", "card_start", `Start: <span>${task.startDate}</span>`);
+        const card_end          = createElement("div", "card_end", `End: <span>${task.endDate}</span>`);
+        const card_description  = createElement("div", "card_description", `Description: <span>${task.description}</span>`);
+        const card_priority     = createElement("div", "card_priority", `<span>Priority :</span>${task.priority}`);
+        const btnDelete         = createElement("div", "delete-btn", `<span>Supprimer</span> ✖️`)
 
         appendElement(displayTask, card)
         appendElement(card, card_name)
-        appendElement(card_name, card_priority)
+        appendElement(card, card_priority)
         appendElement(card, card_start)
         appendElement(card, card_end)
         appendElement(card, card_description)

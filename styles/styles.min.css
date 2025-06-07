@@ -108,6 +108,12 @@ header form input:focus, header form textarea:focus {
   border: 0.2rem solid #697EDB;
   background-color: #bbc5ef;
 }
+header form #task-name::placeholder {
+  color: #343434;
+}
+header form #task-name.required::placeholder {
+  color: #ff0000;
+}
 header form fieldset {
   display: flex;
   justify-content: space-evenly;
@@ -157,4 +163,39 @@ main .wrapper > div {
 main .wrapper .btn-container {
   margin-bottom: 3rem;
   text-align: center;
+}
+main .wrapper .display-task {
+  padding: 3rem;
+}
+main .wrapper .display-task .card_name {
+  font-size: 2rem;
+}
+main .wrapper .display-task .card span {
+  display: inline-block;
+  margin-left: auto;
+}
+main .wrapper .display-task .card_priority {
+  font-size: 1.6rem;
+  display: flex;
+}
+main .wrapper .display-task .card_priority > span {
+  margin-left: 0;
+  margin-right: auto;
+}
+main .wrapper .display-task .card_start {
+  display: flex;
+}
+main .wrapper .display-task .card_end {
+  display: flex;
+}
+main .wrapper .display-task .card_description {
+  display: flex;
+}
+main .wrapper .display-task .card .delete-btn {
+  display: flex;
+  cursor: pointer;
+}
+main .wrapper .display-task .card .delete-btn > span {
+  margin-left: 0;
+  margin-right: auto;
 }/*# sourceMappingURL=styles.min.css.map */

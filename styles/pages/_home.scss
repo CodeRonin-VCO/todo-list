@@ -28,5 +28,47 @@ main {
             margin-bottom: 3rem;
             text-align: center;
         }
+        .display-task {
+            padding: 3rem;
+
+            .card {
+
+                &_name {
+                    font-size: 2rem;
+                }
+                span {
+                    display: inline-block;
+                    margin-left: auto;
+                }
+                &_priority {
+                    font-size: 1.6rem;
+                    display: flex;
+
+                    > span {
+                        margin-left: 0;
+                        margin-right: auto;
+                    }
+                }
+                &_start {
+                    display: flex;
+                }
+                &_end {
+                    display: flex;
+                }
+                &_description {
+                    display: flex;
+                }
+                .delete-btn {
+                    display: flex;
+                    cursor: pointer;
+
+                    > span {
+                        margin-left: 0;
+                        margin-right: auto;
+                    }
+                }
+                
+            }
+        }
     }
 }

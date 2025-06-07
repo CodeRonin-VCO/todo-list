@@ -38,6 +38,13 @@ header {
                 background-color: $tonal-l20;
             }
         }
+        #task-name::placeholder {
+            color: #343434;
+        }
+        #task-name.required::placeholder {
+            color: #ff0000;
+        }
+
         fieldset {
             display: flex;
             justify-content: space-evenly;
