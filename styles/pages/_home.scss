@@ -1,0 +1,32 @@
+@use "../abstracts/" as *;
+
+main {
+    width: 80%;
+    padding: 2rem;
+    background-color: $surface-secondary;
+
+    h1 {
+        padding: 2rem 0 5rem;
+        font-size: 5rem;
+        text-align: center;
+        color: $tonal-primary;
+    }
+    h3 {
+        color: $tonal-l30;
+        text-align: center;
+    }
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        > div {
+            width: 30%;
+            background-color: $surface-secondary-l10;
+            border-radius: .8rem;
+        }
+        .btn-container {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+    }
+}

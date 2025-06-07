@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recap | To do list</title>
+
+    <!-- ---- Links fonts - Comfortaa, Righteous, REM, EB Garamond, Libre Baskerville, Quintessential and Twinkle Star ---- -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Quintessential&family=REM:ital,wght@0,100..900;1,100..900&family=Righteous&family=Twinkle+Star&display=swap" rel="stylesheet">
+    
+    <!-- ---- Links to files -->
+    <link rel="stylesheet" href="styles/styles.min.css">
+    <script defer src="./scripts/main.js"></script>
+
+    <!-- ---- Link font awesome ---- -->
+    <script src="https://kit.fontawesome.com/338ba07762.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h2>Plan your tasks</h2>
+        <form action="#">
+            <label for="task-name">Name of the task:</label>
+                <input type="text" id="task-name" placeholder="ex.: Faire des courses">
+            <label for="start-date">Start date:</label>
+                <input type="date" id="start-date">
+            <label for="end-date">End date</label>
+                <input type="date" id="end-date">
+            <label for="description">Description:</label>
+                <textarea name="description" id="description" cols="30" rows="5"></textarea>
+            <fieldset>
+                <legend>Select the priority of the task:</legend>
+                <div>
+                    <input type="radio" id="low" value="low" name="priority">
+                    <label for="low">Low</label>
+                </div>
+                <div>
+                    <input type="radio" id="medium" value="medium" name="priority">
+                    <label for="medium">Medium</label>
+                </div>
+                <div>
+                    <input type="radio" id="high" value="high" name="priority">
+                    <label for="high">High</label>
+                </div>
+            </fieldset>
+            <button class="add-task">Add task</button>
+        </form>
+    </header>
+    <main>
+        <h1>My to-do list</h1>
+        <div class="wrapper">
+            <div class="all-tasks">
+                <h3>All my tasks</h3>
+                <div class="btn-container">
+                    <button>Filter by name</button>
+                    <button>Filter by end date</button>
+                    <button>Create new sheet</button>
+                </div>
+                <div class="display-task"></div>
+            </div>
+            <div class="display-task-sheet">
+                <h3>Tasks sheet</h3>
+            </div>
+            <div class="display-done">
+                <h3>Done</h3>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

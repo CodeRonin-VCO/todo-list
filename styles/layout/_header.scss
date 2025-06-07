@@ -1,0 +1,68 @@
+@use "../abstracts/" as *;
+
+body {
+    height: 100vh;
+    color: #ddd;
+    display: flex;
+}
+
+header {
+    width: 20%;
+    background-color: $surface-primary;
+
+    h2 {
+        padding: 2rem 0;
+        color: $tonal-l20;
+        text-align: center;
+    }
+
+    form {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+
+        label {
+            padding-bottom: 1rem;
+        }
+        input, textarea {
+            margin-bottom: 1.5rem;
+            padding: .5rem;
+            border-radius: .8rem;
+            background-color: $surface-l20;
+            outline: none;
+            border: .2rem solid $txt-color;
+
+            &:focus {
+                border: .2rem solid $tonal-primary;
+                background-color: $tonal-l20;
+            }
+        }
+        fieldset {
+            display: flex;
+            justify-content: space-evenly;
+
+            > div > label {
+
+                &::before {
+                    content: "";
+                    display: inline-block;
+                    width: 1.6rem; height: 1.6rem;
+                    margin-right: 1rem;
+                    background-color: $surface-l20;
+                    border: .2rem solid $txt-color;
+                    border-radius: 50%;
+                }
+            }
+
+            input[type="radio"] {
+                display: none;
+
+                &:checked + label::before {
+                    background-color: $tonal-primary;
+                    border-color: $tonal-primary;
+                }
+            }
+        }
+    }
+}

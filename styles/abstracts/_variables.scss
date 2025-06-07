@@ -1,0 +1,15 @@
+// ~~~~ DARK THEME ~~~~
+$txt-color: #fff;
+    
+$surface-primary: #333; 
+$surface-l10: lighten($surface-primary, 10%); // bgc section
+$surface-l20: lighten($surface-primary, 20%); // bgc input
+
+$surface-secondary: #1c1c1c; 
+$surface-secondary-l10: lighten($surface-secondary, 10%); // bgc section
+$surface-secondary-l20: lighten($surface-secondary, 20%); // bgc input
+
+$tonal-primary: #697EDB;
+$tonal-l20: lighten($tonal-primary, 20%); // bgc BTN
+$tonal-l30: lighten($tonal-primary, 30%); // small icon or details
+$tonal-l40: lighten($tonal-primary, 40%); // smaller icon or details

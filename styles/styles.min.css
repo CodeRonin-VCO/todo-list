@@ -1,0 +1,160 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.6rem;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+button {
+  margin: 3rem 0;
+  padding: 0.8rem 1.6rem;
+  background-color: #bbc5ef;
+  outline: none;
+  border: none;
+  border-radius: 3.2rem;
+}
+button:hover {
+  background-color: #697EDB;
+}
+
+body {
+  height: 100vh;
+  color: #ddd;
+  display: flex;
+}
+
+header {
+  width: 20%;
+  background-color: #333;
+}
+header h2 {
+  padding: 2rem 0;
+  color: #bbc5ef;
+  text-align: center;
+}
+header form {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+header form label {
+  padding-bottom: 1rem;
+}
+header form input, header form textarea {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  background-color: #666666;
+  outline: none;
+  border: 0.2rem solid #fff;
+}
+header form input:focus, header form textarea:focus {
+  border: 0.2rem solid #697EDB;
+  background-color: #bbc5ef;
+}
+header form fieldset {
+  display: flex;
+  justify-content: space-evenly;
+}
+header form fieldset > div > label::before {
+  content: "";
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 1rem;
+  background-color: #666666;
+  border: 0.2rem solid #fff;
+  border-radius: 50%;
+}
+header form fieldset input[type=radio] {
+  display: none;
+}
+header form fieldset input[type=radio]:checked + label::before {
+  background-color: #697EDB;
+  border-color: #697EDB;
+}
+
+main {
+  width: 80%;
+  padding: 2rem;
+  background-color: #1c1c1c;
+}
+main h1 {
+  padding: 2rem 0 5rem;
+  font-size: 5rem;
+  text-align: center;
+  color: #697EDB;
+}
+main h3 {
+  color: #e4e8f9;
+  text-align: center;
+}
+main .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+main .wrapper > div {
+  width: 30%;
+  background-color: #363636;
+  border-radius: 0.8rem;
+}
+main .wrapper .btn-container {
+  margin-bottom: 3rem;
+  text-align: center;
+}/*# sourceMappingURL=styles.min.css.map */
