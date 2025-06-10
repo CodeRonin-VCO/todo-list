@@ -1,21 +1,22 @@
 // ==== Sélections ==== 
 // Tâches
-const inputTaskName     = document.querySelector("#task-name");
-const inputStartDate    = document.querySelector("#start-date");
-const inputEndDate      = document.querySelector("#end-date");
-const inputDescription  = document.querySelector("#description");
-const btnAddTask        = document.querySelector(".add-task");
+const inputTaskName         = document.querySelector("#task-name");
+const inputStartDate        = document.querySelector("#start-date");
+const inputEndDate          = document.querySelector("#end-date");
+const inputDescription      = document.querySelector("#description");
+const btnAddTask            = document.querySelector(".add-task");
 
 // Affichages
-const displayTask       = document.querySelector(".display-task");
-const displayTaskSheet  = document.querySelector(".display-task-sheet");
-const displayDone       = document.querySelector(".display-done");
+const displayTask           = document.querySelector(".display-task");
+const displayProgress     = document.querySelector(".display-progress");
+const displayDone           = document.querySelector(".display-done");
 
 // Filtre
-const btnsFilter         = document.querySelector(".btn-container");
+const [btnName, btnEndDate] = document.querySelectorAll(".btn-container button");
 
 // ==== Variables ====
 const arrayTasks = [];
+let currentSort = null; // Pour retenir le tri actuel
 
 // ==== Fonctions utilitaires ====
 function createElement(tag, className, content) {
@@ -35,30 +36,48 @@ function appendElement(parent, child) {
 }
 
 // ==== Fonctions ====
+// ---- Générer les tâches ----
 function getUserData() {
     // Obtenir la valeur du bouton radio lors de l'appel (sinon il prend celui coché au départ du chargement)
     const radio       = document.querySelector(`[name="priority"]:checked`);
-    
-    // Obtenir la valeur des champs
-    const name        = inputTaskName.value ? inputTaskName.value : alert(`Veuillez donner un nom de tâche`);
-    const startDate   = inputStartDate.value;
-    const endDate     = inputEndDate.value;
-    const description = inputDescription.value;
-    const priority    = radio.value;
 
-    return {
-        name: name,
-        startDate: startDate,
-        endDate: endDate,
-        description: description,
-        priority: priority
+    if (!inputTaskName.value) {
+        alert("Veuillez donner un nom de tâche");
+        return 
+
+    } else {
+        // Obtenir la valeur des champs
+        const name        = inputTaskName.value ? inputTaskName.value : alert(`Veuillez donner un nom de tâche`);
+        const startDate   = inputStartDate.value;
+        const endDate     = inputEndDate.value;
+        const description = inputDescription.value;
+        const priority    = radio.value;
+
+        return {
+            name: name,
+            startDate: startDate,
+            endDate: endDate,
+            description: description,
+            priority: priority,
+            inprogress: false,
+            done: false
+        }
     }
 }
 function stockUserData() {
     arrayTasks.push(getUserData());
 }
 function displayUserData() {
-    displayTask.innerHTML = "";
+    displayTask.innerHTML = `<h3>My tasks</h3>`;
+    displayProgress.innerHTML = "<h3>In progress</h3>";
+    displayDone.innerHTML = "<h3>Done</h3>";
+
+    // Appliquer le tri si un critère est actif
+    if (currentSort === "name") {
+        arrayTasks.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (currentSort === "endDate") {
+        arrayTasks.sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
+    }
 
     arrayTasks.forEach((task, index) => {
         const card              = createElement("details", "card", "");
@@ -72,7 +91,6 @@ function displayUserData() {
         const card_priority     = createElement("div", "card_priority", `<span>Priority :</span>${task.priority}`);
         const btnDelete         = createElement("div", "delete-btn", `<span>Supprimer</span> ✖️`)
 
-        appendElement(displayTask, card)
         appendElement(card, card_name)
         appendElement(card, card_priority)
         appendElement(card, card_start)
@@ -83,15 +101,20 @@ function displayUserData() {
         btnDelete.addEventListener("click", function (event) {
             event.preventDefault();
 
-            if(event.target.classList.contains("delete-btn")) {
-                const item = event.target.parentElement;
-                const indexItem = Array.from(event.target.parentElement.children).indexOf(item);
-                item.remove();
-                arrayTasks.splice(indexItem, 1);
-            }
+            arrayTasks.splice(index, 1); // Supprimer la bonne tâche
+            displayUserData(); // Afficher les tâches mises à jour
         })
 
         card.addEventListener("dragstart", drag); // Ajout de l'événement dragstart
+
+        // Ajouter card dans la bonne colonne
+        if (task.done) {
+            displayDone.appendChild(card);
+        } else if (task.inprogress) {
+            displayProgress.appendChild(card);
+        } else {
+            displayTask.appendChild(card);
+        }
     })
 }
 function resetFields() {
@@ -107,6 +130,44 @@ function resetFields() {
     });
 }
 
+// ---- Drag & Drop les tâches ----
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+function drop(ev) {
+  ev.preventDefault();
+
+    let dropTarget = ev.target;
+    while (dropTarget && !dropTarget.id) {
+        dropTarget = dropTarget.parentElement;
+    }
+
+    const taskId = ev.dataTransfer.getData("text");
+    const taskElement = document.getElementById(taskId);
+    const dropZone = dropTarget.id;
+
+  // Mettre à jour les données de l'objet task
+  const taskIndex = parseInt(taskId.split("-")[1]); // Extrait l'index
+  if (arrayTasks[taskIndex]) {
+    if (dropZone === "in-progress") {
+      arrayTasks[taskIndex].inprogress = true;
+      arrayTasks[taskIndex].done = false;
+
+    } else if (dropZone === "done") {
+      arrayTasks[taskIndex].inprogress = false;
+      arrayTasks[taskIndex].done = true;
+    }
+  }
+
+    // Ajoutez l'élément à la nouvelle zone
+    dropTarget.appendChild(taskElement);
+    // Réafficher les tâches après la mise à jour
+    displayUserData();
+}
+
 // ==== Evénements ====
 btnAddTask.addEventListener("click", function (event) {
     event.preventDefault();
@@ -114,19 +175,15 @@ btnAddTask.addEventListener("click", function (event) {
     stockUserData();
     displayUserData();
     resetFields()
+    
 })
 
-// ==== Draggable elements ====
-function allowDrop(ev) {
-  ev.preventDefault();
-}
+btnName.addEventListener("click", function () {
+    currentSort = "name";
+    displayUserData();
+})
+btnEndDate.addEventListener("click", function () {
+    currentSort = "endDate";
+    displayUserData();
+})
 
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-  let data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-  ev.preventDefault();
-}

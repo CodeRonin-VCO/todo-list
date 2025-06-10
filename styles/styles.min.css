@@ -158,7 +158,7 @@ main {
   }
 }
 main h1 {
-  padding: 2rem 0 5rem;
+  padding: 2rem 0;
   font-size: 5rem;
   text-align: center;
   color: #697EDB;
@@ -166,6 +166,13 @@ main h1 {
 main h3 {
   color: #e4e8f9;
   text-align: center;
+}
+main .btn-container {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+main .btn-container button:first-child {
+  margin-right: 2rem;
 }
 main .wrapper {
   display: flex;
@@ -190,48 +197,38 @@ main .wrapper > div {
     margin: 0;
   }
 }
-main .wrapper .btn-container {
-  margin-bottom: 3rem;
-  text-align: center;
-}
-main .wrapper .btn-container button:first-child {
-  margin-right: 2rem;
-}
-main .wrapper .all-tasks {
+main .wrapper .display-task, main .wrapper .display-progress, main .wrapper .display-done {
   padding: 3rem;
 }
-main .wrapper .display-progress, main .wrapper .display-done {
-  padding: 3rem;
-}
-main .wrapper .card_name {
+main .wrapper .display-task .card_name, main .wrapper .display-progress .card_name, main .wrapper .display-done .card_name {
   font-size: 2rem;
 }
-main .wrapper .card span {
+main .wrapper .display-task .card span, main .wrapper .display-progress .card span, main .wrapper .display-done .card span {
   display: inline-block;
   margin-left: auto;
 }
-main .wrapper .card_priority {
+main .wrapper .display-task .card_priority, main .wrapper .display-progress .card_priority, main .wrapper .display-done .card_priority {
   font-size: 1.6rem;
   display: flex;
 }
-main .wrapper .card_priority > span {
+main .wrapper .display-task .card_priority > span, main .wrapper .display-progress .card_priority > span, main .wrapper .display-done .card_priority > span {
   margin-left: 0;
   margin-right: auto;
 }
-main .wrapper .card_start {
+main .wrapper .display-task .card_start, main .wrapper .display-progress .card_start, main .wrapper .display-done .card_start {
   display: flex;
 }
-main .wrapper .card_end {
+main .wrapper .display-task .card_end, main .wrapper .display-progress .card_end, main .wrapper .display-done .card_end {
   display: flex;
 }
-main .wrapper .card_description {
+main .wrapper .display-task .card_description, main .wrapper .display-progress .card_description, main .wrapper .display-done .card_description {
   display: flex;
 }
-main .wrapper .card .delete-btn {
+main .wrapper .display-task .card .delete-btn, main .wrapper .display-progress .card .delete-btn, main .wrapper .display-done .card .delete-btn {
   display: flex;
   cursor: pointer;
 }
-main .wrapper .card .delete-btn > span {
+main .wrapper .display-task .card .delete-btn > span, main .wrapper .display-progress .card .delete-btn > span, main .wrapper .display-done .card .delete-btn > span {
   margin-left: 0;
   margin-right: auto;
 }/*# sourceMappingURL=styles.min.css.map */

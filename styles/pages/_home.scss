@@ -10,7 +10,7 @@ main {
     }
 
     h1 {
-        padding: 2rem 0 5rem;
+        padding: 2rem 0;
         font-size: 5rem;
         text-align: center;
         color: $tonal-primary;
@@ -18,6 +18,14 @@ main {
     h3 {
         color: $tonal-l30;
         text-align: center;
+    }
+    .btn-container {
+        margin-bottom: 3rem;
+        text-align: center;
+        
+        button:first-child {
+            margin-right: 2rem;
+        }
     }
     .wrapper {
         display: flex;
@@ -40,58 +48,49 @@ main {
                 margin: 0;
             }
         }
-        .btn-container {
-            margin-bottom: 3rem;
-            text-align: center;
-            
-            button:first-child {
-                margin-right: 2rem;
-            }
-        }
-        .all-tasks {
+        
+
+        .display-task, .display-progress, .display-done {
             padding: 3rem;
-        }
 
-        .display-progress, .display-done {
-            padding: 3rem;
-        }
-         .card {
+            .card {
 
-            &_name {
-                font-size: 2rem;
-            }
-            span {
-                display: inline-block;
-                margin-left: auto;
-            }
-            &_priority {
-                font-size: 1.6rem;
-                display: flex;
-
-                > span {
-                    margin-left: 0;
-                    margin-right: auto;
+                &_name {
+                    font-size: 2rem;
                 }
-            }
-            &_start {
-                display: flex;
-            }
-            &_end {
-                display: flex;
-            }
-            &_description {
-                display: flex;
-            }
-            .delete-btn {
-                display: flex;
-                cursor: pointer;
-
-                > span {
-                    margin-left: 0;
-                    margin-right: auto;
+                span {
+                    display: inline-block;
+                    margin-left: auto;
                 }
+                &_priority {
+                    font-size: 1.6rem;
+                    display: flex;
+
+                    > span {
+                        margin-left: 0;
+                        margin-right: auto;
+                    }
+                }
+                &_start {
+                    display: flex;
+                }
+                &_end {
+                    display: flex;
+                }
+                &_description {
+                    display: flex;
+                }
+                .delete-btn {
+                    display: flex;
+                    cursor: pointer;
+
+                    > span {
+                        margin-left: 0;
+                        margin-right: auto;
+                    }
+                }
+                
             }
-            
         }
     }
 }
