@@ -15,7 +15,7 @@ const displayDone           = document.querySelector(".display-done");
 const [btnName, btnEndDate] = document.querySelectorAll(".btn-container button");
 
 // ==== Variables ====
-const arrayTasks = [];
+let arrayTasks = [];
 let currentSort = null; // Pour retenir le tri actuel
 
 // ==== Fonctions utilitaires ====
@@ -66,6 +66,7 @@ function getUserData() {
 }
 function stockUserData() {
     arrayTasks.push(getUserData());
+    localStorage.setItem('tasks', JSON.stringify(arrayTasks));
 }
 function displayUserData() {
     displayTask.innerHTML = `<h3>My tasks</h3>`;
@@ -102,6 +103,7 @@ function displayUserData() {
             event.preventDefault();
 
             arrayTasks.splice(index, 1); // Supprimer la bonne tâche
+            localStorage.setItem('tasks', JSON.stringify(arrayTasks)); // Mettre à jour le localStorage
             displayUserData(); // Afficher les tâches mises à jour
         })
 
@@ -164,9 +166,21 @@ function drop(ev) {
 
     // Ajoutez l'élément à la nouvelle zone
     dropTarget.appendChild(taskElement);
+    // Mettre à jour le localStorage après avoir modifié les tâches
+    localStorage.setItem('tasks', JSON.stringify(arrayTasks));
     // Réafficher les tâches après la mise à jour
     displayUserData();
 }
+
+// ---- Local storage ----
+function loadTasksFromLocalStorage() {
+    const tasks = localStorage.getItem('tasks');
+    if (tasks) {
+        arrayTasks = JSON.parse(tasks);
+        displayUserData();
+    }
+}
+loadTasksFromLocalStorage();
 
 // ==== Evénements ====
 btnAddTask.addEventListener("click", function (event) {
