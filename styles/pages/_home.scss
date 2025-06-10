@@ -1,9 +1,13 @@
 @use "../abstracts/" as *;
 
 main {
-    width: 80%;
+    width: 100%;
     padding: 2rem;
     background-color: $surface-secondary;
+
+    @media screen and (min-width:960px) {
+        width: 80%;
+    }
 
     h1 {
         padding: 2rem 0 5rem;
@@ -17,58 +21,77 @@ main {
     }
     .wrapper {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
 
+        @media screen and (min-width:960px) {
+            flex-direction: row;
+        }
+
         > div {
-            width: 30%;
+            width: 100%;
+            min-height: 30rem;
+            margin: 3rem 0;
             background-color: $surface-secondary-l10;
             border-radius: .8rem;
+
+            @media screen and (min-width:960px) {
+                width: 30%;
+                margin: 0;
+            }
         }
         .btn-container {
             margin-bottom: 3rem;
             text-align: center;
-        }
-        .display-task {
-            padding: 3rem;
-
-            .card {
-
-                &_name {
-                    font-size: 2rem;
-                }
-                span {
-                    display: inline-block;
-                    margin-left: auto;
-                }
-                &_priority {
-                    font-size: 1.6rem;
-                    display: flex;
-
-                    > span {
-                        margin-left: 0;
-                        margin-right: auto;
-                    }
-                }
-                &_start {
-                    display: flex;
-                }
-                &_end {
-                    display: flex;
-                }
-                &_description {
-                    display: flex;
-                }
-                .delete-btn {
-                    display: flex;
-                    cursor: pointer;
-
-                    > span {
-                        margin-left: 0;
-                        margin-right: auto;
-                    }
-                }
-                
+            
+            button:first-child {
+                margin-right: 2rem;
             }
+        }
+        .all-tasks {
+            padding: 3rem;
+        }
+
+        .display-progress, .display-done {
+            padding: 3rem;
+        }
+         .card {
+
+            &_name {
+                font-size: 2rem;
+            }
+            span {
+                display: inline-block;
+                margin-left: auto;
+            }
+            &_priority {
+                font-size: 1.6rem;
+                display: flex;
+
+                > span {
+                    margin-left: 0;
+                    margin-right: auto;
+                }
+            }
+            &_start {
+                display: flex;
+            }
+            &_end {
+                display: flex;
+            }
+            &_description {
+                display: flex;
+            }
+            .delete-btn {
+                display: flex;
+                cursor: pointer;
+
+                > span {
+                    margin-left: 0;
+                    margin-right: auto;
+                }
+            }
+            
         }
     }
 }

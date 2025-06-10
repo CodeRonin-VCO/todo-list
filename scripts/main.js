@@ -60,8 +60,11 @@ function stockUserData() {
 function displayUserData() {
     displayTask.innerHTML = "";
 
-    arrayTasks.forEach(task => {
+    arrayTasks.forEach((task, index) => {
         const card              = createElement("details", "card", "");
+        card.setAttribute("draggable", "true");
+        card.id = `task-${index}`;
+        
         const card_name         = createElement("summary", "card_name", `${task.name}`);
         const card_start        = createElement("div", "card_start", `Start: <span>${task.startDate}</span>`);
         const card_end          = createElement("div", "card_end", `End: <span>${task.endDate}</span>`);
@@ -87,6 +90,8 @@ function displayUserData() {
                 arrayTasks.splice(indexItem, 1);
             }
         })
+
+        card.addEventListener("dragstart", drag); // Ajout de l'événement dragstart
     })
 }
 function resetFields() {
@@ -110,3 +115,18 @@ btnAddTask.addEventListener("click", function (event) {
     displayUserData();
     resetFields()
 })
+
+// ==== Draggable elements ====
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  let data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+  ev.preventDefault();
+}

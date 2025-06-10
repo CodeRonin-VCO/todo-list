@@ -76,11 +76,22 @@ body {
   height: 100vh;
   color: #ddd;
   display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 960px) {
+  body {
+    flex-direction: row;
+  }
 }
 
 header {
-  width: 20%;
+  width: 100%;
   background-color: #333;
+}
+@media screen and (min-width: 960px) {
+  header {
+    width: 20%;
+  }
 }
 header h2 {
   padding: 2rem 0;
@@ -137,9 +148,14 @@ header form fieldset input[type=radio]:checked + label::before {
 }
 
 main {
-  width: 80%;
+  width: 100%;
   padding: 2rem;
   background-color: #1c1c1c;
+}
+@media screen and (min-width: 960px) {
+  main {
+    width: 80%;
+  }
 }
 main h1 {
   padding: 2rem 0 5rem;
@@ -153,49 +169,69 @@ main h3 {
 }
 main .wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
+@media screen and (min-width: 960px) {
+  main .wrapper {
+    flex-direction: row;
+  }
+}
 main .wrapper > div {
-  width: 30%;
+  width: 100%;
+  min-height: 30rem;
+  margin: 3rem 0;
   background-color: #363636;
   border-radius: 0.8rem;
+}
+@media screen and (min-width: 960px) {
+  main .wrapper > div {
+    width: 30%;
+    margin: 0;
+  }
 }
 main .wrapper .btn-container {
   margin-bottom: 3rem;
   text-align: center;
 }
-main .wrapper .display-task {
+main .wrapper .btn-container button:first-child {
+  margin-right: 2rem;
+}
+main .wrapper .all-tasks {
   padding: 3rem;
 }
-main .wrapper .display-task .card_name {
+main .wrapper .display-progress, main .wrapper .display-done {
+  padding: 3rem;
+}
+main .wrapper .card_name {
   font-size: 2rem;
 }
-main .wrapper .display-task .card span {
+main .wrapper .card span {
   display: inline-block;
   margin-left: auto;
 }
-main .wrapper .display-task .card_priority {
+main .wrapper .card_priority {
   font-size: 1.6rem;
   display: flex;
 }
-main .wrapper .display-task .card_priority > span {
+main .wrapper .card_priority > span {
   margin-left: 0;
   margin-right: auto;
 }
-main .wrapper .display-task .card_start {
+main .wrapper .card_start {
   display: flex;
 }
-main .wrapper .display-task .card_end {
+main .wrapper .card_end {
   display: flex;
 }
-main .wrapper .display-task .card_description {
+main .wrapper .card_description {
   display: flex;
 }
-main .wrapper .display-task .card .delete-btn {
+main .wrapper .card .delete-btn {
   display: flex;
   cursor: pointer;
 }
-main .wrapper .display-task .card .delete-btn > span {
+main .wrapper .card .delete-btn > span {
   margin-left: 0;
   margin-right: auto;
 }/*# sourceMappingURL=styles.min.css.map */

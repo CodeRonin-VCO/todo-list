@@ -51,18 +51,17 @@
         <h1>My to-do list</h1>
         <div class="wrapper">
             <div class="all-tasks">
-                <h3>All my tasks</h3>
+                <h3>My tasks</h3>
                 <div class="btn-container">
                     <button>Filter by name</button>
                     <button>Filter by end date</button>
-                    <button>Create new sheet</button>
                 </div>
                 <div class="display-task"></div>
             </div>
-            <div class="display-task-sheet">
-                <h3>Tasks sheet</h3>
+            <div class="display-progress" ondrop="drop(event)" ondragover="allowDrop(event)" id="in-progress">
+                <h3>In progress</h3>
             </div>
-            <div class="display-done">
+            <div class="display-done" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <h3>Done</h3>
             </div>
         </div>

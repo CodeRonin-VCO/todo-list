@@ -4,11 +4,20 @@ body {
     height: 100vh;
     color: #ddd;
     display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width:960px) {
+        flex-direction: row;
+    }
 }
 
 header {
-    width: 20%;
+    width: 100%;
     background-color: $surface-primary;
+
+    @media screen and (min-width:960px) {
+        width: 20%;
+    }
 
     h2 {
         padding: 2rem 0;
